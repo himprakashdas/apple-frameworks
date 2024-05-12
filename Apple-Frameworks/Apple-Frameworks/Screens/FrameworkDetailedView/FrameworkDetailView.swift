@@ -15,22 +15,6 @@ struct FrameworkDetailView: View {
     
     var body: some View {
         VStack{
-            HStack{
-                Spacer()
-                
-                Button{
-                    isShowingDetailView = false
-                }label: {
-                    Image(systemName: "xmark")
-                        .foregroundColor(Color(.label)) //.label makes it adaptible to light and dark mode
-                        .imageScale(.large)
-                        .frame(width: 44, height: 44) //made slightly larger than the original icon for ease of use
-                }
-            }
-            .padding()
-            
-            
-            Spacer()
             
             FrameworkTitleView(framework: framework)
             
@@ -39,12 +23,19 @@ struct FrameworkDetailView: View {
                 .font(.body)
             
             Spacer()
+            
             Button{
                 isShowingSafariView = true
             }label:{
-                AFButton(title: "Learn More")
+//                AFButton(title: "Learn More")
+                Label("Learn More", systemImage: "book.fill")
+                    .fontWeight(.bold)
             }
-            .padding(.bottom, 30)
+            .buttonStyle(.bordered)
+            .controlSize(.extraLarge)
+            .buttonBorderShape(.roundedRectangle(radius: 10))
+            .padding(.bottom, 40)
+            .tint(.red)
             
         }
         .sheet(isPresented: $isShowingSafariView, content: {
